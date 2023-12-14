@@ -1,39 +1,20 @@
-function search(nums: number[], target: number): number {
-	let l = 0;
-	let r = nums.length - 1;
+function binarySearch(nums: number[], target: number): number {
+	let left = -1;
+	let right = arr.length - 1;
 
-	while (l <= r) {
-		const m = Math.floor((l + r) / 2);
+	while (left <= right) {
+		const mid = Math.floor((right + left) / 2);
 
-		if (nums[m] > target) {
-			r = m - 1;
-		} else if (nums[m] < target) {
-			l = m + 1;
+		if (nums[mid] === target) {
+			return mid;
+		} else if (nums[mid] > target) {
+			right = mid - 1;
 		} else {
-			return m;
+			left = mid + 1;
 		}
 	}
 
 	return -1;
-}
-//console.log(search([-2, -1, 0, 3, 5, 6, 8, 9], 5));
-
-function binarySearch(nums: number[], target: number): number {
-	let l = 0;
-	let r = nums.length;
-
-	while (l < r) {
-		const mid = Math.floor((l + r) / 2);
-
-		if (nums[mid] >= target) {
-			r = mid;
-		} else {
-			l = mid + 1;
-		}
-		console.log(l, r);
-	}
-
-	return l;
 }
 console.log(binarySearch([-2, -1, 0, 3, 5, 6, 8, 9], 0));
 
