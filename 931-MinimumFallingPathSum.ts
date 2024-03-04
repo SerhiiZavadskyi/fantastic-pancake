@@ -40,7 +40,6 @@ function minFallingPathSum(matrix: number[][]): number {
 			matrix[row][col] += Math.min(mid, left, right);
 		}
 	}
-	console.log(matrix);
 
 	return Math.min(...matrix[matrix.length - 1]);
 }
