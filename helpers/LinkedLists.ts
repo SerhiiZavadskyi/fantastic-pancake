@@ -1,150 +1,150 @@
 interface LinkedListInterface {
-	prepend(val: number): LinkedListInterface;
-	append(val: number): LinkedListInterface;
-	insert(index: number, val: number): void;
-	delete(index: number): void;
-	printList(): number[];
-	getList(): ListNode;
+	prepend(val: number): LinkedListInterface
+	append(val: number): LinkedListInterface
+	insert(index: number, val: number): void
+	delete(index: number): void
+	printList(): number[]
+	getList(): ListNode
 }
 
 export class ListNode {
-	val: number;
-	next: ListNode | null;
+	val: number
+	next: ListNode | null
 	constructor(val?: number, next?: ListNode | null) {
-		this.val = val === undefined ? 0 : val;
-		this.next = next === undefined ? null : next;
+		this.val = val === undefined ? 0 : val
+		this.next = next === undefined ? null : next
 	}
 }
 
 export class LinkedList implements LinkedListInterface {
-	head: ListNode;
-	tail: ListNode;
-	length: number;
+	head: ListNode
+	tail: ListNode
+	length: number
 
 	constructor(val: number) {
 		this.head = {
 			next: null,
 			val,
-		};
-		this.tail = this.head;
-		this.length = 1;
+		}
+		this.tail = this.head
+		this.length = 1
 	}
 
 	prepend(val: number): LinkedListInterface {
 		const newNode = {
 			val,
 			next: this.head,
-		};
-		this.head = newNode;
-		this.length++;
+		}
+		this.head = newNode
+		this.length++
 
-		return this;
+		return this
 	}
 	append(val: number): LinkedListInterface {
-		const newNode = new ListNode(val);
-		this.tail.next = newNode;
-		this.tail = newNode;
-		this.length++;
-		return this;
+		const newNode = new ListNode(val)
+		this.tail.next = newNode
+		this.tail = newNode
+		this.length++
+		return this
 	}
 
 	insert(index: number, val: number): number[] | LinkedListInterface {
 		if (index === 0) {
-			this.prepend(val);
-			return this.printList();
+			this.prepend(val)
+			return this.printList()
 		}
 
 		if (index >= this.length) {
-			return this.append(val);
+			return this.append(val)
 		}
 
-		const newNode = new ListNode(val);
-		const leader = this.traverseToIndex(index - 1);
-		const holdingPointer = leader.next;
+		const newNode = new ListNode(val)
+		const leader = this.traverseToIndex(index - 1)
+		const holdingPointer = leader.next
 
-		leader.next = newNode;
-		newNode.next = holdingPointer;
-		this.length++;
+		leader.next = newNode
+		newNode.next = holdingPointer
+		this.length++
 
-		return this.printList();
+		return this.printList()
 	}
 
 	delete(index: number): number[] | ListNode | null {
 		if (index === 0 && this.head.next) {
-			const unwantedNode = this.head;
-			this.head = this.head.next;
-			this.length--;
+			const unwantedNode = this.head
+			this.head = this.head.next
+			this.length--
 
-			return unwantedNode;
+			return unwantedNode
 		}
 
 		if (index >= this.length) {
-			return this.printList();
+			return this.printList()
 		}
 
-		const leader = this.traverseToIndex(index - 1);
-		const unwantedNode = leader.next;
+		const leader = this.traverseToIndex(index - 1)
+		const unwantedNode = leader.next
 
 		if (unwantedNode) {
-			leader.next = unwantedNode.next;
+			leader.next = unwantedNode.next
 		}
 
-		this.length--;
+		this.length--
 
-		return unwantedNode;
+		return unwantedNode
 	}
 
 	reverse() {
 		if (!this.head.next) {
-			return this.head;
+			return this.head
 		}
 
-		let first = this.head;
-		this.tail = this.head;
-		let second = first.next;
+		let first = this.head
+		this.tail = this.head
+		let second = first.next
 
 		while (second) {
-			const temp = second.next;
-			second.next = first;
-			first = second;
-			second = temp;
+			const temp = second.next
+			second.next = first
+			first = second
+			second = temp
 		}
 
-		this.head.next = null;
-		this.head = first;
+		this.head.next = null
+		this.head = first
 
-		return this.head;
+		return this.head
 	}
 
 	printList(): number[] {
-		const arr: number[] = [];
-		let currentNode: ListNode | null = this.head;
+		const arr: number[] = []
+		let currentNode: ListNode | null = this.head
 
 		while (currentNode) {
-			arr.push(currentNode.val);
-			currentNode = currentNode.next;
+			arr.push(currentNode.val)
+			currentNode = currentNode.next
 		}
 
-		return arr;
+		return arr
 	}
 
 	getList(): ListNode {
-		return this.head;
+		return this.head
 	}
 
 	private traverseToIndex(index: number): ListNode {
-		let counter = 0;
-		let currentNode: ListNode = this.head;
+		let counter = 0
+		let currentNode: ListNode = this.head
 
 		while (counter !== index) {
 			if (currentNode && currentNode.next) {
-				currentNode = currentNode.next;
+				currentNode = currentNode.next
 			}
 
-			counter++;
+			counter++
 		}
 
-		return currentNode;
+		return currentNode
 	}
 }
 
