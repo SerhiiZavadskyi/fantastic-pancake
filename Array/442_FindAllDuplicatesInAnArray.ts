@@ -8,7 +8,7 @@ function findDuplicates(nums: number[]): number[] {
 			res.push(n)
 		}
 
-		nums[n - 1] = -nums[n - 1]
+		nums[n - 1] *= -1
 	}
 
 	return res
