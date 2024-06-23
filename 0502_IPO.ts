@@ -1,4 +1,4 @@
-class MaxHeap {
+export class MaxHeap {
 	heap: [number, number][]
 
 	constructor() {
