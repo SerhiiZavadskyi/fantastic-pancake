@@ -1,6 +1,4 @@
-import { inspect } from "util"
-import { drawTree } from "./helpers/drawTree"
-import { TreeNode, BinarySearchTree } from "./helpers/Tree"
+import { TreeNode } from "./helpers/Tree"
 
 function bstToGst(root: TreeNode | null): TreeNode | null {
 	let currSum = 0
