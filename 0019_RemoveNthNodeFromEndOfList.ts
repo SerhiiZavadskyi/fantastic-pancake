@@ -1,4 +1,4 @@
-import { ListNode } from "./ListNode"
+import { ListNode } from "./helpers/LinkedLists"
 import { inspect } from "util"
 
 function removeNthFromEnd2(head: ListNode | null, n: number): ListNode | null {
