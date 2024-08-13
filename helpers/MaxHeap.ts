@@ -1,16 +1,16 @@
-export class MaxHeap {
-	private heap: [number, number, number][]
+export class MaxHeap<T> {
+	private heap: T[]
 
 	constructor() {
 		this.heap = []
 	}
 
-	public push(item: [number, number, number]): void {
+	public push(item: T): void {
 		this.heap.push(item)
 		this.bubbleUp()
 	}
 
-	public pop(): [number, number, number] | undefined {
+	public pop(): T | undefined {
 		if (this.size() === 0) return undefined
 		const top = this.heap[0]
 		const end = this.heap.pop()
@@ -25,6 +25,10 @@ export class MaxHeap {
 		return this.heap.length
 	}
 
+	public peak(): T {
+		return this.heap[0]
+	}
+
 	private bubbleUp(): void {
 		let index = this.heap.length - 1
 		const element = this.heap[index]
@@ -33,7 +37,7 @@ export class MaxHeap {
 			const parentIndex = Math.floor((index - 1) / 2)
 			const parent = this.heap[parentIndex]
 
-			if (element[0] <= parent[0]) break
+			if (element <= parent) break
 
 			this.heap[index] = parent
 			index = parentIndex
@@ -49,23 +53,20 @@ export class MaxHeap {
 		while (true) {
 			const leftChildIndex = 2 * index + 1
 			const rightChildIndex = 2 * index + 2
-			let leftChild: [number, number, number] | undefined
-			let rightChild: [number, number, number] | undefined
+			let leftChild: T | undefined
+			let rightChild: T | undefined
 			let swapIndex = -1
 
 			if (leftChildIndex < length) {
 				leftChild = this.heap[leftChildIndex]
-				if (leftChild[0] > element[0]) {
+				if (leftChild > element) {
 					swapIndex = leftChildIndex
 				}
 			}
 
 			if (rightChildIndex < length) {
 				rightChild = this.heap[rightChildIndex]
-				if (
-					(swapIndex === -1 && rightChild[0] > element[0]) ||
-					(swapIndex !== -1 && rightChild[0] > (leftChild as [number, number, number])[0])
-				) {
+				if ((swapIndex === -1 && rightChild > element) || (swapIndex !== -1 && rightChild > leftChild!)) {
 					swapIndex = rightChildIndex
 				}
 			}
