@@ -46,9 +46,7 @@ function maxScore1(s: string): number {
 
 function maxScore(s: string): number {
 	let res = 0;
-	let ones = s
-		.split("")
-		.reduce((count, char) => (char === "1" ? count + 1 : count), 0);
+	let ones = s.split("").reduce((count, char) => (char === "1" ? count + 1 : count), 0);
 	let zeros = 0;
 
 	for (let i = 0; i < s.length - 1; i++) {

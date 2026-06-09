@@ -1,0 +1,24 @@
+{
+	"name": "fantastic-pancake",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SerhiiZavadskyi/fantastic-pancake.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/SerhiiZavadskyi/fantastic-pancake/issues"
+	},
+	"homepage": "https://github.com/SerhiiZavadskyi/fantastic-pancake#readme",
+	"description": "",
+	"devDependencies": {
+		"ts-node": "^10.9.2",
+		"typescript": "^5.9.2"
+	}
+}
